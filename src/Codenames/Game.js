@@ -48,8 +48,14 @@ class Game {
     }
 
     configure(customWords) {
-        const words = Words.Wordlist.random(25);
-        if (customWords.length) words.replace(customWords.length, customWords.map(w => w.toLowerCase()));
+        const fromDiskWordList = new Words.Wordlist(customWords);
+        if (fromDiskWordList.wordsFilename && !fromDiskWordList.validWordsFilename) 
+        {
+            this.channel.send("**✖ Invalid custom words filename, using default words. -end and try again if desired.**");
+            this.channel.send("Available word lists: " + fromDiskWordList.availableWordLists.join(", "));
+        }
+        const words = fromDiskWordList.random(25);
+        if (!fromDiskWordList.wordsFilename && customWords.length) words.replace(customWords.length, customWords.map(w => w.toLowerCase()));
         this.board.drawBoard(words);
         this.masterBoard.drawBoard(words);
         return words;
