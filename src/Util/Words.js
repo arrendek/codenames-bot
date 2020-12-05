@@ -78,14 +78,14 @@ class Wordlist extends Words {
         if (!this.checkValidWordsFilename(this.wordsFilename)) {
             this.wordsFilename = "Words.txt";
             this.validWordsFilename = false;
-            this.getAvailableWordLists();
+            this.availableWordLists = Wordlist.getAvailableWordLists();
         }
         else {
             this.wordsFilename += ".txt";
             if (!fs.existsSync("./assets/" + this.wordsFilename)) {
                 this.wordsFilename = "Words.txt";
                 this.validWordsFilename = false;
-                this.getAvailableWordLists();
+                this.availableWordLists = Wordlist.getAvailableWordLists();
             }
         }
         const data = fs.readFileSync("./assets/" + this.wordsFilename, { encoding: 'utf8' });
@@ -94,14 +94,15 @@ class Wordlist extends Words {
         this.push(...arr);
     }
 
-    getAvailableWordLists()
+    static getAvailableWordLists()
     {
-        this.availableWordLists = [];
+        let availableWordLists = [];
         let assetFiles = fs.readdirSync("./assets/", { encoding: 'utf8' });
         assetFiles.forEach(file => {
             if (file.startsWith("words_") && file.endsWith(".txt") && !fs.lstatSync(path.resolve("./assets/", file)).isDirectory())
-                this.availableWordLists.push(file.slice(0,-4));
+                availableWordLists.push(file.slice(0,-4));
         });
+        return availableWordLists;
     }
 
     checkValidWordsFilename(str) {
