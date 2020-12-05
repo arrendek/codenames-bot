@@ -18,7 +18,7 @@ module.exports = {
        if (words && words.length) {
         if (!Util.hasNoRepeats(words)) return message.channel.send("**✖ | There can't be any repeats!**");
         if (words.length > 25) return message.channel.send("**✖ | The maximum amount of custom words is `25`!**")
-        if (words.some(w => w.length > 16)) return message.channel.send("**✖ | One of the custom words is too long! Maximum length is `16`!**");
+        if (words.some(w => w.length > 16 && !w.startsWith("words_"))) return message.channel.send("**✖ | One of the custom words is too long! Maximum length is `16`!**");
        }
        game = new gamemodes[gamemode](message.channel, Util.codeGen());
        game.master = message.author;
