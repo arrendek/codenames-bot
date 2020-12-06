@@ -25,6 +25,7 @@ module.exports = {
         game.configure(words);
         game.displayBoard();
         handler.games.set(message.channel.id, game);
-        message.channel.send("**🔌 | Note: The lobby will automatically be disbanded if there is no activity.**")
+        //message.channel.send("**🔌 | Note: The lobby will automatically be disbanded if there is no activity.**")
+        message.channel.send("**🔌 | Note: The lobby will remain active in perpetuity unless all players leave the game.**")
     }
 }
