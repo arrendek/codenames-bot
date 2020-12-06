@@ -6,17 +6,16 @@ module.exports = {
     description: "Get help!",
     exe(message, args, handler) {
         if (!args.length) {
+            //            \`\`\`ml
+            //*'Command' "List"\`\`\`
             message.channel.send(`
-\`\`\`ml
-'Command' "List"\`\`\`
-
 Use \`-help [command]\` to get more information on a command.
 
 **1. Information -** \`help\`, \`game\`, \`tutorial\`, \`invite\`, \`gamemode\`, \`wordlists\`
 **2. Game -**  \`clue\`, \`guess\`, \`endturn\`
 **3. Lobby -**  \`configure\`, \`join\`, \`leave\`, \`spymaster\`, \`start\`, \`stop\`, \`rng\`, \`givemaster\`
 
-**Github: https://github.com/arrendek/codenames-bot/, please contact arrendek with issues **
+**Please message arrendek with any issues. Github: https://github.com/arrendek/codenames-bot/.**
 **This Codenames Discord bot is a fork of GoogleFeud's bot from here: https://github.com/GoogleFeud/codenames-bot/.**
 **If you see missing words on the board, you'll have to do \`-end\` and then \`-configure\` again!**
 `)
