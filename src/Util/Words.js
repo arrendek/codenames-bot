@@ -89,18 +89,17 @@ class Wordlist extends Words {
             }
         }
         const data = fs.readFileSync("./assets/" + this.wordsFilename, { encoding: 'utf8' });
-        let arr = data.split("\r\n").map(w => w.toLowerCase()).filter(w=>w.length>1);
-        if (arr.length == 1) arr = data.split("\n").map(w => w.toLowerCase()).filter(w=>w.length>1);
+        let arr = data.split("\r\n").map(w => w.toLowerCase()).filter(w => w.length > 1);
+        if (arr.length == 1) arr = data.split("\n").map(w => w.toLowerCase()).filter(w => w.length > 1);
         this.push(...arr);
     }
 
-    static getAvailableWordLists()
-    {
+    static getAvailableWordLists() {
         let availableWordLists = [];
         let assetFiles = fs.readdirSync("./assets/", { encoding: 'utf8' });
         assetFiles.forEach(file => {
             if (file.startsWith("words_") && file.endsWith(".txt") && !fs.lstatSync(path.resolve("./assets/", file)).isDirectory())
-                availableWordLists.push(file.slice(0,-4));
+                availableWordLists.push(file.slice(0, -4));
         });
         return availableWordLists;
     }
